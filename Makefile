@@ -1,9 +1,9 @@
 all: Client Server
 
-Client : Client.o socket.o Blockable.o
-	g++ -o Client Client.o socket.o Blockable.o -pthread -l rt
+Client : Client.o socket.o Blockable.o thread.o
+	g++ -o Client Client.o socket.o Blockable.o thread.o -pthread -l rt
 
-Client.o : Client.cpp socket.h
+Client.o : Client.cpp socket.h thread.h
 	g++ -c Client.cpp -std=c++11
 
 Server : Server.o thread.o socket.o socketserver.o Blockable.o
